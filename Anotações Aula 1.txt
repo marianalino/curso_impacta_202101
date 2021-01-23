@@ -50,3 +50,119 @@ $ cd C:\Users\macal\Desktop\curso_impacta_202101
 
 - Download Git Fork
 Link para download: https://git-fork.com/
+
+*****
+
+Módulo é uma sequência de coisas escritas em javascript - lista, objeto, funções...
+Esses elementos que são escritos, são expostos no formato de módulo, como se escrevêssemos uma biblioteca de funções - a idéia é ser reaproveitado!
+Para ser usado (reaproveitado), ele (módulo) precisa ser importado. E para ser acessado, é necessário permitir acesso usando exportação.
+De forma normal um módulo é criado com funções.
+
+Formas de acessar funções:
+1. diretamente acessamos:
+var soma = nomeFuncao(x, y);
+
+2. usando variável para referenciar:
+var funcao = nomeFuncao;
+var soma = funcao(x, y);
+
+Diferença: a primeira executa diretamente e atribui o retorno na variavel soma; e a segunda cria referência dando outro nome pra função, como um apelido
+
+3. função anônima:
+var calculo = function(x, y){
+    return x + y;
+}
+var soma = calculo(2, 3);
+
+Tipos de variáveis:
+var n = 10;                                 // number ou inteiro
+var s = "Minha primeira aula";              // string
+var ns = '10';                              // string
+var a = [];                                 // array ou lista
+var a = [1, '2', 'oi'];                     // array ou lista
+var o = { titulo: 'Minha primeira aula' }   // objeto, composto por label e valor do label
+var o = { dia: '23/01', ano: 2020 }         // objeto, composto por label e valor do label
+var funcao = nomeFuncao;                    // função
+var f1 = nomeFuncao(1, 2);                  // number ou inteiro
+var f2 = nomeFuncao;                        // função
+var soma = f2(1, 2);                        // number ou inteiro
+
+Tipos de funções arrow function
+
+exports.verificaTamanho = function(x){
+    return x.length;
+}
+exports.verificaTamanhoAF = (x) => x.length;
+exports.verificaTamanhoAF2 = x => x.length;
+
+exports.soma = function(x, y){
+    return x + y;
+}
+exports.somaAF = (x, y) => x + y;
+
+exports.welcome = function(){
+    console.log('Seja bem vindo!');
+}
+exports.welcomeAF = () => console.log('Seja bem vindo!');
+
+exports.fn = function(texto){
+    let novoTexto = texto + "!!";
+    console.log(novoTexto);
+    return novoTexto;
+}
+exports.fnAF = (texto) => {
+    let novoTexto = texto + "!!";
+    console.log(novoTexto);
+    return novoTexto;
+}
+
+****
+
+Criando servidor web com NodeJS
+- Criar pasta nova: 02_node_web
+- Criar um arquivo dentro da pasta, com o nome app_server.js
+
+Request é um nome padrão utilizado pra enviar ao servidor/captar a resposta do cliente (navegador) as informações necessárias
+Response é a resposta do servidor referente ao conteudo enviado no request
+
+O que vimos sobre módulos:
+- Criados por nós: para ser usado colocamos referência ao caminho - exemplo './escola'
+exports.nomeVariavel (quando exportamos de forma individual)
+module.exports (quando exportamos um objeto de uma única vez)
+
+- Node: para ser usado colocamos o nome direto da biblioteca/módulo - exemplo 'url'/'nomeDoModulo'
+a forma de exportar é definida pela própria biblioteca
+
+- Terceiros (de outras pessoas): para ser usado em projetos NodeJS
+Projetos NodeJS precisam ter pelo menos 2 arquivos na estrutura:
+    - package.json
+    - node_modules
+Estrutura acima é similar ao Angular, pois esses arquivos configuram os módulos de terceiros que serão colocados no projetos
+
+*****
+
+Tipos de objetos
+- javascript
+{
+    nome: 'Mariana',
+    endereco: {
+        logradouro: 'rua tal'
+    }
+}
+- JSON (JavaScript Object Notation)
+{
+    "nome": "Mariana",
+    "endereco": {
+        "logradouro": "rua tal"
+    }
+}
+en.json
+{
+    "title": "My first class",
+    "teacher": "Mary"
+}
+pt-br.json
+{
+    "title": "Minha primeira aula",
+    "teacher": "Mari"
+}
