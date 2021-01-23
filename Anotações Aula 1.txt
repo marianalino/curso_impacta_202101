@@ -1,0 +1,52 @@
+Anotações Aula 1
+
+- Introdução do curso: MEAN Stack
+MongoDB
+Express.js
+Angular
+Node
+
+- Download MongoDB
+Link para download: https://www.mongodb.com/try/download/community
+Se atentem ao sistema operacional, peguem a ultima versão (current)
+Na instalação, selecionem Install MongoDB as a Service e deixem a primeira opção selecionada, não a local
+
+- Download Visual Studio Code
+Link para download: https://code.visualstudio.com/download
+
+Extensions:
+Blank Line Organizer - limpa linhas brancas desnecessárias
+Color Highlight - dá destaque em cores e variáveis de cores
+EditorConfig for VS Code - cria padronização do comportamento dos arquivos
+Git History/Git Lens - possibilita a visualização do histórico do versionamento por linha ou arquivo
+Power Mode - possibilita configuração visual de efeito quando digita no editor
+TSLint - configura padrão de arquivo typescript no VSCode
+
+Para configurar o Editor, usamos como base a documentação: https://code.visualstudio.com/docs/getstarted/settings
+Windows: File > Preferences > settings
+MAC: Code > Preferences > settings
+
+Pré-Processador CSS (scss, sass, less)
+Possibilita uma melhor escrita hierarquica e também tem a possibilidade de escrever funções que sejam replicadas no CSS
+.classe-1 { color: red; }
+.classe-2 { color: blue; }
+.classe-3 { color: green; }
+
+.menu { background-color: pink; }
+.menu a { color: white; }
+
+- Download NodeJS
+Link para download: https://nodejs.org/pt-br/download/
+
+- Download Git Bash
+Link para download: https://git-scm.com/downloads
+
+Diferença entre Git Bash e CMD
+Git bash:
+$ cd ~/Desktop/curso_impacta_202101
+
+CMD:
+$ cd C:\Users\macal\Desktop\curso_impacta_202101
+
+- Download Git Fork
+Link para download: https://git-fork.com/
