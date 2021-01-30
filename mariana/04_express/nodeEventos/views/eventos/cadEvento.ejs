@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+        <link
+            rel="stylesheet"
+            href="/css/style.css"
+        />
+        <title>Menu</title>
+    </head>
+
+    <body>
+        <header>
+            <h1>Eventos!</h1>
+            <nav>
+                <a href="/menu">voltar</a>
+                <a href="/logout">Sair</a>
+            </nav>
+            <p>Seja bem vindo, <%=usuarioParams.nome%>
+            </p>
+        </header>
+        <main>
+            <form
+                action="/novoEvento"
+                method="post"
+                class="formulario"
+            >
+                <div>
+                    <label for="descricao">Descrição</label>
+                    <input
+                        type="text"
+                        id="descricao"
+                        name="evento[descricao]"
+                    />
+                </div>
+                <div>
+                    <label for="data">Data</label>
+                    <input
+                        type="date"
+                        id="data"
+                        name="evento[data]"
+                    />
+                </div>
+                <div>
+                    <label for="preco">Preço</label>
+                    <input
+                        type="text"
+                        id="preco"
+                        name="evento[preco]"
+                    />
+                </div>
+                <div>
+                    <button type="submit">Incluir Usuário</button>
+                </div>
+            </form>
+        </main>
+    </body>
+
+</html>
