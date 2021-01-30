@@ -1,0 +1,127 @@
+Anotações Aula 2
+
+- Versionamento semântico: http://semver.org
+1.2.5
+1 - MAJOR: quando uma alteração gera incompatibilidade com a anterior
+2 - MINOR: quando uma feature é adicionada no projeto
+5 - PATCH: quando um bug fix é realizado
+
+
+Projeto NodeJS
+Tem um arquivo de package.json aonde é declarado uma estrutura de propriedades com informações do projeto/aplicação e que também tem suas dependências declaradas, incluindo de terceiros
+
+Comandos que usaremos
+$ node - que usamos para rodar scripts (arquivos .js) que criamos
+$ npm - que usamos para lidar com projetos Node (NodeJS, Angular, React...)
+npm = node package manager
+
+Criando um projeto Node
+
+$ npm init
+
+Esse comando acima gera uma aplicação Node fazendo algumas perguntas para criarmos o package.json da aplicação com a seguinte ordem:
+- Nome do projeto (não podemos colocar espaço)
+- Versão (seguindo o padrão semântico de versão)
+- Descrição (pode ser deixada em branco)
+- Ponto de partida (arquivo que inicializa a aplicação)
+- Teste (caso usemos teste)
+- Repositório GIT (se formos usar um repositório específico para aquela aplicação)
+- Palavras chave (que simbolizam a aplicação)
+- Autor (quem criou)
+- Tipo de licença (normalmente ISC)
+
+Comandos NPM para projetos Node
+
+$ npm init
+Que gera uma aplicação Node
+
+$ npm install
+Que pega as dependências do projeto e instala todas de uma vez (isso é mais comum quando baixamos um projeto e ele já tem suas dependências declaradas, apenas precisamos instalar para rodar)
+
+$ npm install <nome_modulo>
+OU
+$ npm i <nome_modulo>
+Instala módulos/pacotes/bibliotecas
+
+$ npm install <nome_modulo> --save
+OU
+$ npm i <nome_modulo> --save
+Instala módulos/pacotes/bibliotecas e salva essa dependência no arquivo package.json
+Exemplo: moment, menu responsivo, fontawesome, carrousel...
+
+$ npm install <nome_modulo> --save-dev
+Ou
+$ npm i <nome_modulo> --save-dev
+Instala módulos/pacotes/bibliotecas e salva essa dependência como dependência de desenvolvimento sem que essa dependência vá para a aplicação final
+Exemplo: jasmine, jest...
+
+$ npm install <nome_modulo> -g
+OU
+$ npm i <nome_modulo> -g
+Instala o pacote de forma global disponibilizando na máquina para qualquer projeto aquela estrutura
+Exemplos: nodemon, angular, express...
+
+$ npm update
+Atualiza todos os pacotes
+
+$ npm update <nome_modulo>
+Atualiza um pacote específico
+
+
+Curiosidade GIT (Ignore)
+O GIT disponibiliza uma forma (arquivo) de ignorar pastas e arquivos que você não quer que seja versionado, por exemplo a pasta node_modules que cria muitas pastas e arquivos, fazendo com que o projeto fique muito pesado. Então, podemos tirar a pasta do versionamento, já que o package.json salva as dependências declaradas nele.
+
+Express
+- Instalando gerador de projetos Express
+$ npm i express-generator -g
+
+Estrutura de MVC
+Model: é responsável por lidar com os dados (banco de dados) e informações que serão recebidas e enviadas de volta
+View: é responsável por tratar os dados pro usuário final, exibindo o que foi requerido na solicitação do controller, trazendo informações e gerenciando telas
+Controller: é responsável por intermediar a chamada de request, dados enviados ou recebidos e solicitações de gerenciar telas para visualização do usuário final
+
+Na View podemos (e iremos) utilizar a extensão de .ejs (embbeded javascript) que permite interação do JS com a parte visualização
+
+Observação: Model não é obrigatório na estrutura, pois caso não tenhamos dados para lidar, apenas usamos Controller e View
+
+Fluxo da aplicação MVC:
+- O usuário faz uma requisição na URL (executa uma rota)
+- A rota localização uma função no controller
+- A função é executada no controller e busca uma página (ejs) e apresenta para o usuário
+
+****
+
+cadUsuario
+- copiar formulario de login (inicio.ejs)
+- colar formulario na pagina de cadastro de usuário (cadUsuario.ejs)
+- mudar action de '/login' para '/novoUsuario'
+- mantem nome e senha
+- copiar div de senha para confirmar senha com 'usuario[confirmar]'
+- mudar texto botão submit para Incluir Usuário
+
+******
+
+MongoDB
+
+Executando:
+$ mongo
+
+Vendo bancos existentes:
+$ show databases
+OU
+$ show dbs
+
+Selecionando um banco para usar (se não existe, basta dar o nome que quiser pra criar ele):
+$ use nomeBanco
+
+O banco passa a existir depois que você cria alguma informação nele, exemplo:
+$ db.clientes.insert({ nome: 'Alguma coisa', empresa: 'Impacta' })
+
+Pra ver as 'tabelas':
+$ show collections
+
+Para ver os resultados de uma collection:
+$ db.clientes.find()
+Aonde 'clientes' é o nome da tabela
+
+Para sair, basta apertar CTRL + C ou escrever exit e dar ENTER
