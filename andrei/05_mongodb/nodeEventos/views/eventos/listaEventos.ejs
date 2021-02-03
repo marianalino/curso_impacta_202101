@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        >
+        <link rel="stylesheet" href="/css/style.css"/>
+        <title>Menu</title>
+    </head>
+
+    <body>
+        <header>
+            <h1>Eventos!</h1>
+            <nav>
+                <a href="/logout">Sair</a>
+            </nav>
+            <p>Seja bem vindo, <%= usuarioParams.nome%>
+            </p>
+        </header>
+        <main>
+            <table class="table table-hover">
+                <thead> <!-- cabeçalho -->
+                    <tr>
+                        <th>Descrição</th>
+                        <th>Data</th>
+                        <th>Preço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%eventosParams.forEach(function(evento, index){%>
+                    <tr>
+                        <td><%=evento.descricao%></td>
+                        <td><%=momentParams(evento.data).format('DD/MM/yyyy')%></td>
+                        <td><%=evento.preco%></td>
+                    </tr>
+                    <%})%>
+                </tbody>
+
+            </table>
+        </main>
+    </body>
+
+</html>

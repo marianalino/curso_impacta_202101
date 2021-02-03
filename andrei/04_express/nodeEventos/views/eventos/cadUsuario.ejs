@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+        <link
+            rel="stylesheet"
+            href="/css/style.css"
+        />
+        <title>Menu</title>
+    </head>
+
+    <body>
+        <header>
+            <h1>Eventos!</h1>
+            <nav>
+                <a href="/logout">Sair</a>
+            </nav>
+            <p>Seja bem vindo, <%= usuarioParams.nome%>
+            </p>
+        </header>
+        <main>
+            <form
+                action="/novoUsario"
+                method="post"
+                class="formulario"
+            >
+                <div>
+                    <label for="nome">Nome</label>
+                    <!-- esse for é uma das coisas de acessibilidade; ao ir pro label, vai direto para o input -->
+                    <input
+                        type="text"
+                        id="nome"
+                        name="usuario[nome]"
+                    />
+                </div>
+                <div>
+                    <label for="senha">Senha</label>
+                    <input
+                        type="password"
+                        id="senha"
+                        name="usuario[senha]"
+                    />
+                </div>
+                <div>
+                    <label for="confirma">Confirmar Senha</label>
+                    <input
+                        type="password"
+                        id="confirma"
+                        name="usuario[confirma]"
+                    />
+                </div>
+                <div>
+                    <button type="submit">Incluir Usuario</button>
+                </div>
+
+            </form>
+        </main>
+    </body>
+
+</html>
