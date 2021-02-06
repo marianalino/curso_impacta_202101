@@ -1,0 +1,22 @@
+Webservice
+
+Também chamamos de api, é um serviço web em que esperamos retornos de dados ou enviamos dados, para podermos realizar o CRUD - criação de dados, retorno de dados, atualização de dados e deleção de dados
+
+Mock/Mockado: ambiente simulado, ambiente com dados não reais/dinâmicos que usamos para auxiliar o desenvolvimento, quando por exemplo, não temos informações do back
+
+Postman
+
+Por conta de precisarmos testar a api/o webservice, podemos utilizar da ferramenta POSTMAN para ajudar a testar os retornos, os envios de dados e as respostas dadas pelo servidor
+
+Configurando o CORS
+- Instalamos o módulo
+
+$ npm i cors --save
+
+- Referenciamos o CORS no app.js
+
+var cors = require('cors');
+
+- Vamos usar o cors e definir uma função que se comportará como filtro
+
+app.use(cors());

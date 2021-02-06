@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html
+	lang="en"
+	ng-app="appAngular"
+>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		>
+		<!-- CSS only -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+			crossorigin="anonymous"
+		>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+		<title>Cadastro e listagem de eventos</title>
+	</head>
+
+	<body>
+		<section
+			class="container"
+			ng-controller="EventosController as ctlEventos"
+		>
+			<header>
+				<h1>Cadastro e listagem de eventos</h1>
+			</header>
+			<section class="row">
+				<!--<section class="col-lg-4 col-md-6 col-sm-12">ESSE ELEMENTO</section>-->
+				<section class="col-6">
+					<h2>Adicionar Evento</h2>
+
+					<!-- usaremos o ng-submit para executar uma função de forma assincrona, chamando direto uma função que criaremos no controller da página-->
+					<form
+						name="incluirEvento"
+						ng-submit="ctlEventos.adicionarEvento()"
+					>
+						<div class="form-group">
+							<label for="descricao">Descrição</label>
+							<input
+								type="text"
+								class="form-control"
+								id="descricao"
+								ng-model="ctlEventos.novoEvento.descricao"
+							>
+							<!-- o ng-model preencherá a descrição de um objeto que definiremos no controler chamado novoEvento -->
+						</div>
+						<div class="form-group">
+							<label for="data">Data</label>
+							<input
+								type="date"
+								class="form-control"
+								id="data"
+								ng-model="ctlEventos.novoEvento.data"
+							>
+						</div>
+						<div class="form-group">
+							<label for="preco">Preço</label>
+							<input
+								type="number"
+								class="form-control"
+								id="preco"
+								ng-model="ctlEventos.novoEvento.preco"
+							>
+						</div>
+						<div class="form-group">
+							<button
+								type="submit"
+								class="btn btn-primary"
+							>Adicionar Evento</button>
+						</div>
+					</form>
+				</section>
+				<section class="col-6">
+					<h2>Lista de Eventos</h2>
+
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Descrição</th>
+								<th>Data</th>
+								<th>Preço</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="evento in ctlEventos.eventos">
+								<td>{{evento.descricao | uppercase}}</td>
+								<td>{{evento.data | date:'dd/MM/yyyy'}}</td>
+								<td>{{evento.preco | currency:'R$'}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+			</section>
+		</section>
+		<script>
+			var app = angular.module("appAngular", []);
+			// angular é uma palavra reservada do Angular para descrevermos o módulo (a página)
+			// o nome do módulo é o nome declarado na tag de HTML no ng-app
+			// o nome do módulo será o primeiro parametro
+			// o segundo parametro é para dependencias, mas não usaremos dependencia direta da aplicação, mas sim no controller
+
+			// app é a referencia da aplicação e então usaremos ela para criar a função do controller
+			// o segundo parâmetro do controller são as dependencias do controller
+			// declaramos as dependencias entre parenteses e seguimos com uma function onde usaremos um alias referenciando a dependencia adicionada
+			// caso usemos 2 dependencias, teremos 2 alias na function, e a ordem da inserção de dependencia, segue a ordem dos alias na function
+			// por boas práticas, mantemos o mesmo nome do alias como da dependencia
+			app.controller("EventosController", ['$http', function($http) {
+				// vamos criar uma variavel para referenciar o this, como anteriormente explicado
+				// para acessar o this da function do controller, precisamos atribuir em uma variavel, para ser acessivel dentro de outro escopo de outra function
+				var self = this;
+				self.eventos = [];
+				self.novoEvento = {};
+
+				// criaremos uma função que acessará o webservice e que atribuirá o resultado para a lista que criamos acima
+				var listarEventos = function() {
+					// usaremos o http para fazer uma chamada de método get ao nosso webservice para pegar os eventos no banco de dados
+					return $http.get('http://localhost:3200/eventos').then(function(response) {
+						// quando o get finaliza a requisição, usamos o then para processar as informações vindas com sucesso e podemos atribuir essa informação na lista criada do lado de fora da function
+						self.eventos = response.data;
+					}, function(error) {
+						console.log(error);
+						alert('Um erro aconteceu!');
+					})
+				};
+
+				listarEventos();
+
+				// função para criar um novo evento
+				// usamos o self pois a função é ativada pelo lado de fora do controller no HTML, e dessa forma referenciamos o controller
+				self.adicionarEvento = function() {
+					$http(
+						{
+							url: 'http://localhost:3200/eventos',
+							method: 'POST',
+							data: self.novoEvento,
+							header: {
+								'Content-Type': 'application/json'
+							}
+						}
+					).then(function(response) {
+						// não temos resposta para pegar, mas como no exemplo do todoList, vamos zerar o objeto
+						self.novoEvento = {};
+					}, function(error) {
+						console.log(error);
+						alert('Ocorreu um erro!');
+					}).then(listarEventos);
+					// usamos um segundo then para carregar a lista de eventos após o processamento do http post para atualização da lista
+					// como é uma função de callback, não precisamos usar parenteses na chamada da função
+				}
+			}])
+		</script>
+	</body>
+
+</html>
