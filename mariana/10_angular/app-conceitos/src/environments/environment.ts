@@ -3,7 +3,21 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+	production: false,
+	api: {
+		urlEventos: "http://eventos.dev",
+		urlLogin: "http://login.dev"
+	},
+	featureFlag: {
+		showLog: true,
+		toolbar: {
+			filterComplete: true
+		},
+		login: {
+			forgotPassword: true,
+			notifications: true
+		}
+	}
 };
 
 /*

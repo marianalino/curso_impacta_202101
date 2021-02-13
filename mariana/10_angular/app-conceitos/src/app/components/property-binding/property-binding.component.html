@@ -1,0 +1,13 @@
+<h1>Property Binding</h1>
+<h3>Interpolação de string</h3>
+<p>Número Aleatório: {{rnd}}</p>
+
+<h3>Usando variável como property binding para tag de HTML</h3>
+<label for="rnd">Número Aleatório:</label>
+<input
+  id="rnd"
+  type="text"
+  [value]="rnd"
+/>
+
+<img [src]="imagem" />

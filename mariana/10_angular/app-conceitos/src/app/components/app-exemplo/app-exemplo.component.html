@@ -1,0 +1,18 @@
+<div class="alert alert-success">
+  Mensagem do sistema: {{titulo}}
+</div>
+{{topicos}}
+<ul *ngIf="exibe">
+  <li>Conceitos de NodeJS</li>
+  <li>MVC com Express.js</li>
+  <li>MongoDB</li>
+  <li>Webservice</li>
+  <li>Angular JS</li>
+  <li>Angular 2+</li>
+</ul>
+
+<ul>
+  <li *ngFor="let topico of topicos">
+    {{topico}}
+  </li>
+</ul>

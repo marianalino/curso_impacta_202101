@@ -1,0 +1,27 @@
+@import "./../variables/index";
+
+ul {
+	li {
+		height: 40px;
+		a {
+			font-family: $font-family;
+			color: $link-menu;
+			font-weight: $font-bold;
+
+			&.disabled {
+				color: $disabled;
+				font-weight: $font-light;
+			}
+
+			&:hover {
+				font-weight: $font-normal;
+			}
+		}
+	}
+}
+
+/*
+ul li{ height: 40px; }
+
+ul li a { color: purple; }
+*/

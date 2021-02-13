@@ -1,0 +1,316 @@
+Angular
+https://angular.io/api/core
+
+O Angular inicialmente carrega o arquivo angular.json (pasta raiz), onde tem suas configurações determinadas, que identificam os arquivos inicialmente lidos pela aplicação: main.ts e index.html
+
+O index.html (pasta: src/index.html) tem uma tag do Angular <app-root></app-root> que permite a inicialização do Angular no projeto, baseado nesse selctor declarado. Esse selector, mapeamos e encontramos pelo arquivo main.ts
+
+No arquivo main.ts (pasta: src/main.ts) temos uma sintaxe diferente do Node/Express, pois ao invés de require para importarmos módulos, usamos o import {} from ...
+
+No main.ts temos o uso do arquivo environment que permite acessar informações de configuração de ambiente, aonde também podemos configurar as feature flags do projeto
+
+----
+saindo do Angular, para explicação da feature flags
+
+O arquivo environment tem a sua versão dev (environment.ts), a versão pro (environment.prod.ts) e dentro de cada um desses arquivos, podemos configurar URLs de ambientes, configurações do projeto e também as feature flags
+
+Feature flag é uma forma de configuração de features (áreas ou páginas) da aplicação aonde controlamos visualmente o que vai aparecer e aonde vai aparecer. Por exemplo:
+
+Mariana está trabalhando em correção de bug
+Valdson está trabalhando em uma área de notificações
+Pedro está trabalhando em um link integrado com o back para 'esqueci minha senha'
+
+Para não ser necessário trabalharmos com diversas branchs para controlar essas features (mas usem sim branchs para não trabalhar na mesma branch com outro colega), utilizamos essa técnica para manter as branchs de dev e prod atualizadas, e não ter problema de exibição de conteúdo ou chamada ao back-end que não seja necessária.
+
+Exemplo de feature flag no arquivo environment:
+
+export const environment = {
+  production: false,
+  featureFlag: {
+    showLog: true,
+    toolbar: {
+      filterComplete: true
+    },
+    login: {
+      forgotPassword: true,
+      notifications: true
+    }
+  }
+};
+
+Quando usamos true, significa que queremos que aquela área/link/pagina/chamada para o back seja carregado. Quando false, ocultamos no sistema.
+---
+
+No main.ts temos o bootstrapModule que define qual será o módulo de inicialização da aplicação, que é declarado como AppModule
+
+No arquivo app.module.ts (pasta: src/app/app.module.ts), temos o Decorator (@NgModule) que define as configurações do módulo para serem carregadas e define qual Componente irá ser carregado primeiro - bootstrap: [AppComponent]
+
+No arquivo app.component.ts (pasta: src/app/app.component.ts) temos o Decorator (@Component) que define as configurações do componente para serem carregados para serem interpretados na tela:
+
+@Component({
+  selector: 'app-impacta',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+
+Em comum com o Express, utilizamos o export para usarmos suas caracteristicas (módulo/componente/serviço...) dentro da aplicação. Independente do tipo, todos são classes exportadas. Exemplo:
+
+export class AppModule { }
+export class AppComponent { }
+
+Módulos, Componentes e Serviços (que ainda não vimos) todos são classes que exportamos e todos tem uma definição e configuração obrigatória em todo arquivo .ts do Angular, que é o que define o que eles são e para o que servem.
+
+Essa DEFINIÇÃO e CONFIGURAÇÃO se chama DECORATOR que se faz com o @
+
+Módulo:
+@NgModule({})
+export class AppModule { }
+
+Componente:
+@Component({})
+export class AppComponent {}
+
+Serviço:
+@Injectable({})
+export class AppService { }
+
+Algumas pessoas (por conta de algumas linguagens de programação) chamam de Anotation ou Atributo. Atributo seria para o C# e o Anotation seria para o Java. Mas o nome correto no Angular é Decorator.
+
+O Decorator é usado para especificar o comportamento do elemento em questão. Todos os Decorators lidam com objetos e propriedades para configurarmos a sua funcionalidade.
+
+https://angular.io/api/core/NgModule
+Módulo: (todas as propriedades podem receber array - uma lista de coisas)
+@NgModule({
+  declarations: [], // aqui referenciamos todos os componentes vinculados ao módulo declarado
+  imports: [], // referenciamos todos os módulos do projeto que usamos para funcionalidade do módulo - normalmente módulos terceiros ou externos (externos no caso seriam módulos vinculados a outras áreas do sistema),
+  providers: [], // todos os serviços (services) utilizadas naquele módulo
+  bootstrap: [], // componente inicialização
+  exports: [] // quando temos mais de 1 módulo na aplicação - por exemplo usando o shared
+})
+export class <nome_módulo>
+
+https://angular.io/api/core/Component
+Componente:
+@Component({
+  selector: 'app-exemplo', // o selector é uma configuração obrigatória para existência do componente, que declara a TAG de HTML que usaremos para importar aquele componente na página
+  template | templateUrl, // template é quando queremos criar o HTML direto no arquivo de typescript OU templateUrl que é quando criamos a página .html e vinculamos ao componente por meio dessa propriedades
+  styles | styleUrls // styles você coloca o CSS direto no typescript e styleUrls vc coloca o(s) arquivo(s) de CSS vinculado ao componente
+})
+export class <nome_componente>
+
+----
+saindo do Angular, instalando bootstrap
+
+Para instalar, assim como vimos outros módulos, usamos o npm install ou npm i
+
+$ npm i bootstrap --save
+
+Para instalar uma versão específica, podemos usar assim:
+
+$ npm i bootstrap@3.3.7 --save
+
+Observação importante: quando realizamos uma instalação de aplicação ou de algum módulo, caso apareça problema de 'audit' (segurança) por questões de vulnerabilidade, sempre prestar atenção e corrigir, para não criar problemas futuros para a aplicação.
+
+Para verificar problemas de vulnerabilidade: $ npm audit
+Para corrigir problemas de vulnerabilidade: $ npm audit fix
+Caso o problema seja persistente, você pode forçar a correção: $ npm audit fix --force
+
+Após instalar o bootstrap, colocaremos o arquivo de CSS dele no nosso styles.css OU styles.scss
+---
+
+Diretiva Estrutural
+
+É uma diretiva que controla/altera a estrutura do código/componente em uma página. Exemplo: criar elementos de forma dinâmica, controlar exibição de um elemento na tela, etc...
+A diretiva estrutural sempre começa com * (asterisco), no caso do laço de repetição, usaremos o ngFor que escrito, fica: *ngFor
+
+***
+CRIANDO COMPONENTES
+-> Criando componentes na mão:
+1. Criar a pasta components
+2. Criar a pasta interna em components (app-exemplo)
+3. Criar o arquivo app-exemplo.component.ts
+3.1 Declaração de Decorator com configuração do selector, templateUrl e CSS
+4. Criar o arquivo app-exemplo.component.html
+5. Criar o arquivo app-exemplo.component.css
+6. Registrar (importar) o componente como declarations no módulo (AppModule)
+ - inserir o <app-exemplo> no arquivo de HTML
+
+NG GENERATE - $ ng generate: https://angular.io/cli/generate
+
+Tipos:
+- class
+- component
+- module
+- pipe
+- service
+- interface...
+
+$ ng genate <tipo> <pasta/nome_do_componente>
+
+Ao executar o comando:
+$ ng generate component components/property-binding
+
+1. Cria a pasta do componente
+2. Cria os arquivos de HTML, CSS, TypeScript e spec (arquivo para teste)
+3. Atualiza o app.module.ts
+
+
+BINDING
+
+Um binding é uma troca de informação entre o arquivo de typescript e o de HTML (podendo ser unidirecional ou bi-direcional)
+O binding (simples) quando feito por meio de uma variável, ele se faz por meio da interpolação no HTML - exemplo:
+
+arquivo.ts
+msg: string = 'oi';
+
+arquivo.html
+{{ msg }}
+<p>{{ msg }}</p>
+
+PROPERTY BINDING (atributos de tags de HTML)
+
+arquivo.ts
+pathIMG: string: 'http://image.jpg";
+
+arquivo.html
+<img src="{{ pathIMG }}" /> - funciona mas não é o correto
+
+Assim como as diretivas utilizam a variável direta na escrita, exemplo:
+*ngIf="exibe"
+*ngFor="let topico of topicos"
+
+Não utilizamos nos exemplos acima interpolação dos valores EXIBE e TOPICOS, pois quando tratamos de uma propriedade/atributo em uma tag de HTML utilizamos com foco a propriedade, então declaramos a propriedade do HTML entre [].
+Exemplo:
+<img [src]="pathIMG" />
+
+EVENT BINDING
+
+$ ng generate component components/event-binding
+
+Event binding é um binding unidirecional da view.html para o component.ts, e ele simboliza a interação do usuário com a tela. Exemplo: click, hover, input...
+O uso do event binding se dá com parenteses
+Exemplo:
+<button (click)="funcao()">Enviar</button>
+
+Life Cycle Hooks: https://angular.io/guide/lifecycle-hooks
+
+CONSTRUCTOR
+
+Tem o papel de ser executado quando o componente é criado. É uma função especial para ser processada quando o componente passa a existir, e então sua tarefa se torna receber objetos através de injeção de dependencias (não é obrigatório ter dependencias), compreendendo o que aquele componente precisa ter para existir
+
+ngOnInit
+
+O ngOnInit é uma propriedade (função) da Interface OnInit que funciona/é ativada quando o componente é inicializado.
+Uma interface tem apenas DEFINIÇÕES - variáveis/objetos/propriedades ou de funções
+Colocamos no ngOnInit tudo o que queremos que aconteça quando a tela for inicializada.
+
+SERVIÇOS / SERVICE
+
+Uma service é um repositório de informações ou configurações que é recebida/declarada no constructor, onde servirá para tratar uma informação, configurar um padrão de comportamento, etc...
+Quando o componente é criado, o constructor compreende a sua dependência para lidar no componente com aquele serviço.
+Uma service não interage com o usuário. É um controle total pro sistema.
+
+$ ng generate service <pasta/nome_da_service>
+
+$ ng generate service services/topicos
+
+https://angular.io/api/core/Injectable
+@Injectable({
+  providedIn: 'root'
+})
+export class AppService { }
+
+Quando inserimos a service em um constructor, utilizamos a seguinte escrita:
+
+constructor(alias: NomeDaService)
+
+constructor(topicosService: TopicosService)
+
+------------------------
+Conceito de Injeção de Dependências
+
+class Autor {
+  nome: string;
+}
+
+class Livro {
+  titulo: string;
+  autor: Autor = new Autor();
+}
+
+***
+
+class AutorTipo {
+  nome: string;
+}
+
+class Livro {
+  titulo: string;
+  autor: AutorTipo;
+
+  setAutor(AutorTipo autor): void {
+    this.autor = autor;
+  }
+}
+
+************************
+
+Quando usamos uma service em um constructor, apesar da dependência 'direta', não necessariamente precisamos realizar uma chamada assim que carregamos a service.
+
+Quando é necessário, após a declaração no constructor, realizamos a chamada da função específica da service que precisamos no determinado momento do componente/página.
+
+
+------------
+
+Gerando uma nova aplicação com configurações
+
+1. Criar aplicação Angular
+$ ng new app-eventos --routing=true --style=scss --skip-tests=true
+
+--routing: determina se a aplicação terá rota ou não (true ou false)
+--style: determina o tipo de CSS que teremos no projeto (sass, scss, less, stylus, css)
+--skip-tests: determina se criaremos os arquivos de spec.ts para testes do javascript (true ou false)
+
+ngx-bootstrap: https://valor-software.com/ngx-bootstrap/#/documentation#getting-started
+
+Vamos instalar o ngx-bootstrap e o bootstrap
+
+2. Instalar bootstrap e ngx-bootstrap
+$ npm install ngx-bootstrap bootstrap --save
+
+3. Importar o bootstrap no styles.scss
+@import "~bootstrap/scss/bootstrap.scss";
+
+4. Criar módulo de shared para usar na aplicação
+$ ng generate module components/shared
+
+5. Criar componente de menu no módulo shared
+$ ng generate component components/shared/menu
+
+6. Adicionar SharedModule em imports do app.module
+
+7. Adicionar MenuComponent em exports do shared.module
+
+8 Adicionar dependencias do ngx-bootstrap pro modelo de menu
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
+9. Criar variável isCollapsed no menu.component.ts
+isCollapsed = true;
+
+10. Adicionar selector do menu no app.component.html
+<app-menu></app-menu>
+<router-outlet></router-outlet>
+
+11. Vamos criar 3 componentes de telas para configurarmos rotas:
+- Página Inicial/Home
+- Página de Lista de eventos
+- Página 404 - Não Encontrado
+
+$ ng generate component components/home
+
+$ ng generate component components/eventos/lista
+
+$ ng generate component components/not-found
+
+Documentação SCSS/SASS: https://sass-lang.com/documentation

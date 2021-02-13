@@ -1,0 +1,18 @@
+@import "./../variables/index";
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-bottom: 30px;
+	font-weight: $font-bold;
+	color: $primary-color;
+}
+
+a {
+	color: $secondary-color;
+	cursor: pointer;
+	text-decoration: none;
+}

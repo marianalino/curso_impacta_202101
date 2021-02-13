@@ -1,0 +1,13 @@
+<h1>Event Binding</h1>
+
+<input
+	type="text"
+	[value]="escola"
+/>
+<button (click)="alterarTexto()">Modificar texto no input</button>
+<p *ngIf="showLog">Log exemplo</p>
+<input
+	type="text"
+	[value]="rnd"
+/>
+<button (click)="alterarRnd()">Modificar rnd no input</button>

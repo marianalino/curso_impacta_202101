@@ -56,6 +56,14 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "uat": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.uat.ts"
+                }
+              ]
             }
           }
         },
@@ -67,6 +75,9 @@
           "configurations": {
             "production": {
               "browserTarget": "app-conceitos:build:production"
+            },
+            "uat": {
+              "browserTarget": "app-conceitos:build:uat"
             }
           }
         },
@@ -119,6 +130,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "app-conceitos"
 }
