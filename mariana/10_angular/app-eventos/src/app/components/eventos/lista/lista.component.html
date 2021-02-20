@@ -1,8 +1,47 @@
 <h1>Lista de Eventos</h1>
-<a
-	class="btn btn-primary btn-back"
-	[routerLink]="['/eventos/novo']"
->Inserir Evento</a>
+
+<div class="form-group row">
+	<div class="col-2">
+		<label
+			for="descricao"
+			class="control-label"
+		>
+			Filtro eventos:
+		</label>
+	</div>
+	<div class="col-7">
+		<input
+			type="text"
+			id="descricao"
+			name="descricao"
+			class="form-control"
+			#busca
+			(keyup)="0"
+		>
+	</div>
+	<div class="col-3">
+		<a
+			class="btn btn-primary btn-back"
+			[routerLink]="['/eventos/novo']"
+		>Inserir Evento</a>
+	</div>
+</div>
+
+<div class="form-group row">
+	<div
+		class="col-12 alert alert-danger"
+		*ngShow="eventos.length < 4"
+	>
+		<h4>Você possui {{eventos.length}} eventos!</h4>
+	</div>
+	<div
+		class="col-12 alert alert-success"
+		*ngShow="eventos.length >= 4"
+	>
+		<h4>Você possui {{eventos.length}} eventos!</h4>
+	</div>
+</div>
+
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -13,7 +52,10 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let evento of eventos">
+		<tr
+			*ngFor="let evento of eventos | subLista:busca.value"
+			hoverDestaque
+		>
 			<td>{{evento.descricao | titlecase}}</td>
 			<td>{{evento.data | date:'dd/MM/yyyy'}}</td>
 			<td>{{evento.preco | currency:'BRL':'symbol':'1.2-2'}}</td>

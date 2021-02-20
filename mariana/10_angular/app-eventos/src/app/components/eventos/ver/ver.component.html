@@ -4,7 +4,7 @@
 	<p><strong>Código (_id):</strong> {{evento._id}}</p>
 	<p><strong>Descrição:</strong> {{evento.descricao | titlecase}}</p>
 	<p><strong>Data:</strong> {{evento.data | date:'dd/MM/yyyy'}}</p>
-	<p><strong>Preço:</strong> {{evento.preco | currency:'R$':symbol:'1.2-2'}}</p>
+	<p><strong>Preço:</strong> {{evento.preco | currency:'R$':'symbol':'1.2-2'}}</p>
 </section>
 <a
 	[routerLink]="['/eventos']"

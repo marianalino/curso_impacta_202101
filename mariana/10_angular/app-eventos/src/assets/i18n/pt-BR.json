@@ -1,0 +1,22 @@
+{
+	"languages": {
+		"pt-BR": {
+			"name": "Português",
+			"sigla": "pt-br"
+		},
+		"en": {
+			"name": "Inglês",
+			"sigla": "en"
+		}
+	},
+	"screens": {
+		"home": {
+			"title": "Página Inicial"
+		}
+	},
+	"events": {
+		"list": "Lista de Eventos",
+		"new": "Novo Evento",
+		"edit": "Editar Evento"
+	}
+}

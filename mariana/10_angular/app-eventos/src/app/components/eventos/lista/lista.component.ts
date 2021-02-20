@@ -8,7 +8,7 @@ import { WebserviceService } from 'src/app/services/webservice.service';
 	styleUrls: ['./lista.component.scss']
 })
 export class ListaComponent implements OnInit {
-	eventos: Evento[];
+	eventos: Evento[] = [];
 
 	constructor(
 		private webservice: WebserviceService,

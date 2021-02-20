@@ -1,0 +1,22 @@
+{
+	"languages": {
+		"pt-BR": {
+			"name": "Portuguese",
+			"sigla": "pt-br"
+		},
+		"en": {
+			"name": "English",
+			"sigla": "en"
+		}
+	},
+	"screens": {
+		"home": {
+			"title": "Home Page"
+		}
+	},
+	"events": {
+		"list": "List Events",
+		"new": "New Event",
+		"edit": "Edit Event"
+	}
+}

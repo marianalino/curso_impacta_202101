@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { EditarComponent } from './components/eventos/editar/editar.component';
 import { ListaComponent } from './components/eventos/lista/lista.component';
 import { NovoComponent } from './components/eventos/novo/novo.component';
@@ -40,7 +41,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
+	imports: [RouterModule.forRoot(routes), TranslateModule],
 	exports: [RouterModule]
 })
 export class AppRoutingModule { }

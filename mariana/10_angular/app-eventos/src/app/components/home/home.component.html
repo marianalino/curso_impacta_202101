@@ -1,2 +1,7 @@
-<h1>Página Inicial</h1>
+<h1>{{ 'screens.home.title' | translate }}</h1>
 <h3>Seja bem-vindo!</h3>
+
+<p>{{ 'mariana' | email }}</p>
+<p>{{ 'mariana' | email:"sabadou" }}</p>
+<p>{{ 'mariana' | email:"sabadou":".com.br" }}</p>
+<p>{{ 'mariana' | email:undefined:".com.br" }}</p>

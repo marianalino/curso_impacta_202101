@@ -1,0 +1,10 @@
+<section class="btn-lang">
+	<button
+		(click)="useLang('pt-BR', $event.target)"
+		[ngClass]="{'active': currentLanguage === 'pt-BR'}"
+	>{{ 'languages.pt-BR.sigla' | translate }}</button>
+	<button
+		(click)="useLang('en', $event.target)"
+		[ngClass]="currentLanguage === 'en' ? 'active' : ''"
+	>{{ 'languages.en.sigla' | translate }}</button>
+</section>

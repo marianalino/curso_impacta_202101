@@ -1,8 +1,12 @@
-import { HttpClientModule } from '@angular/common/http';
+import { registerLocaleData } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import localePtBr from '@angular/common/locales/pt';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
@@ -16,8 +20,14 @@ import { VerComponent } from './components/eventos/ver/ver.component';
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SharedModule } from './components/shared/shared.module';
+import { HoverDestaqueDirective } from './diretivas/hover-destaque.directive';
+import { NgShowDirective } from './diretivas/ng-show.directive';
+import { EmailPipe } from './pipes/email.pipe';
+import { SubListaPipe } from './pipes/sub-lista.pipe';
+import { UppercasePipe } from './pipes/uppercase.pipe';
 
-defineLocale('pt-br', ptBrLocale);
+defineLocale('pt-br', ptBrLocale); // language para datepicker
+registerLocaleData(localePtBr, 'pt-BR');
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -27,7 +37,12 @@ defineLocale('pt-br', ptBrLocale);
 		NovoComponent,
 		VerComponent,
 		EditarComponent,
-		RemoverComponent
+		RemoverComponent,
+		EmailPipe,
+		UppercasePipe,
+		SubListaPipe,
+		NgShowDirective,
+		HoverDestaqueDirective
 	],
 	imports: [
 		BrowserModule,
@@ -36,9 +51,21 @@ defineLocale('pt-br', ptBrLocale);
 		SharedModule,
 		HttpClientModule,
 		FormsModule,
-		BsDatepickerModule.forRoot()
+		BsDatepickerModule.forRoot(),
+		TranslateModule.forRoot({
+			defaultLanguage: 'pt-BR',
+			loader: {
+				provide: TranslateLoader,
+				useFactory: HttpLoaderFactory,
+				deps: [HttpClient]
+			}
+		})
 	],
 	providers: [],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function HttpLoaderFactory(http: HttpClient) {
+	return new TranslateHttpLoader(http, './assets/i18n/');
+}
