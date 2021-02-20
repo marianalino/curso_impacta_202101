@@ -37,3 +37,42 @@ export interface Evento {
 	data: string;
 	preco: number;
 }
+
+*****
+
+Pipes / Filtros
+
+São elementos que transformam o resultado apresentado na tela para o usuário.
+Exemplos:
+uppercase - transforma todas as letras em maiusculo
+titlecase - transforma todas as primeiras letras das palavras em maiusculo
+date - transforma uma data formatada num formado desejado
+currency - transforma um numero em valor monetário
+
+Comando: $ ng generate pipe pipes/email
+
+Ao criar um pipe, o arquivo app.module.ts é atualizado para disponibilizar o pipe em toda a aplicação
+
+*****
+
+Diretivas
+
+Estrutural: altera a estrutura do componente/html (DOM), podendo inserir, remover, ocultar conteúdo da tela
+Uso: com * na frente do nome da Diretiva
+
+Para diretiva estrutural, controlando visualização de conteúdo, precisamos usar 2 módulos do angular core:
+Template Ref - é o conteúdo interno do caontainer, conteúdo a ser manipulado pela diretiva
+View Container Ref - é o elemento externo que usamos na condição da diretiva, elemento que executa a diretiva
+
+Propriedade: inclui novos comportamentos em cima de um elemento na tela
+
+*****
+
+Por questõe sde segurança, é ideal que o arquivo de environmente de beta e prod, as vezes UAT também seja obfuscado: https://javascriptobfuscator.com/Javascript-Obfuscator.aspx
+
+*****
+
+Internacionalização: https://github.com/ngx-translate/core
+i18n
+
+Comando para instalação: $ npm install @ngx-translate/core --save
