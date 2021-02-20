@@ -1,0 +1,15 @@
+<h1>Remover Evento - {{evento.descricao}}</h1>
+
+<section class="alert alert-danger">
+	<p>Você tem certeza que deseja excluir o evento <strong>{{evento.descricao}}</strong>?</p>
+	<div class="row justify-content-md-center">
+		<button
+			(click)="remover(evento._id)"
+			class="btn btn-danger"
+		>Sim</button>
+		<button
+			(click)="back()"
+			class="btn btn-success"
+		>Não</button>
+	</div>
+</section>

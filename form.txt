@@ -1,0 +1,75 @@
+<h1>Inserir Evento</h1>
+
+<form class="form-horizontal">
+    <fieldset>
+        <div class="form-group row">
+            <label
+                for="descricao"
+                class="control-label col-md-2"
+            >
+                Descrição:
+            </label>
+            <input
+                type="text"
+                id="descricao"
+                name="descricao"
+                class="form-control col-md-10"
+            >
+        </div>
+        <div class="form-group row">
+            <label
+                for="data"
+                class="control-label col-md-2"
+            >
+                Data:
+            </label>
+            <input
+                type="date"
+                id="data"
+                name="data"
+                class="form-control col-md-4"
+            >
+            <label
+                for="preco"
+                class="control-label col-md-2"
+            >
+                Preço:
+            </label>
+            <input
+                type="text"
+                id="preco"
+                name="preco"
+                class="form-control col-md-4"
+            >
+        </div>
+        <div class="form-group row justify-content-md-center">
+            <div class="col-md-1">
+                <button class="btn btn-primary">Incluir</button>
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </fieldset>
+
+</form>
+
+
+****
+
+form {
+    fieldset {
+        div {
+            margin-bottom: 30px;
+            label {
+                text-align: right;
+                align-self: center;
+                padding-right: 10px;
+                font-size: 20px;
+            }
+            input {
+                height: 35px;
+            }
+        }
+    }
+}

@@ -4,7 +4,10 @@
 
 export const environment = {
 	production: false,
-	apiEventos: "http://localhost:3200/eventos"
+	apiEventos: "http://localhost:3200/eventos",
+	featureFlag: {
+		showLog: true
+	}
 };
 
 /*

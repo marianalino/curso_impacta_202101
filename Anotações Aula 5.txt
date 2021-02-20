@@ -1,0 +1,39 @@
+Angular (parte 2)
+
+Binding/Vínculo bi-direcional (property binding + event binding)
+
+Property Binding -> do componente para o HTML
+[propriedade/atributo]
+
+Event Binding -> do HTML para o componente
+(evento)
+
+Vínculo bi-direcional funciona para manipularmos inputs de formulários
+[(ngModel)] -> a escrita é SEMPRE ngModel
+
+Para o ngModel funcionar, como manipulamos formulário, precisamos importar no AppModule o FormsModule do Angular Forms
+
+*****
+
+Angular similar ao history back
+-> Location do @angular/common
+this.location.back()
+
+Controlar rota no arquivo de typescript
+-> Router do @angular/Router
+this.router.navigate(['/URL'])
+
+Controlar rota no arquivo de HTML -> somente em <a> (âncoras)
+<a [routerLink]="['/URL']">TEXTO DO BOTÃO</a>
+
+*****
+
+Em uma Interface, podemos declarar uma propriedade que seja opcional, para isso usamos na frente do nome, antes dos ':' uma interrogação.
+Exemplo:
+
+export interface Evento {
+	_id?: string; -> dado opcional, para no caso de controlar eventos novos e ja existentes
+	descricao: string;
+	data: string;
+	preco: number;
+}

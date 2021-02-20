@@ -1,11 +1,15 @@
 <h1>Lista de Eventos</h1>
-
+<a
+	class="btn btn-primary btn-back"
+	[routerLink]="['/eventos/novo']"
+>Inserir Evento</a>
 <table class="table table-striped">
 	<thead>
 		<tr>
 			<th>Descrição</th>
 			<th>Data</th>
 			<th>Preço</th>
+			<th>Ações</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -13,6 +17,20 @@
 			<td>{{evento.descricao | titlecase}}</td>
 			<td>{{evento.data | date:'dd/MM/yyyy'}}</td>
 			<td>{{evento.preco | currency:'BRL':'symbol':'1.2-2'}}</td>
+			<td>
+				<a
+					class="btn btn-info"
+					[routerLink]="['/eventos/ver/'+evento._id]"
+				>Ver</a>
+				<a
+					class="btn btn-warning"
+					[routerLink]="['/eventos/editar/'+evento._id]"
+				>Alterar</a>
+				<a
+					class="btn btn-danger"
+					[routerLink]="['/eventos/remover/'+evento._id]"
+				>Apagar</a>
+			</td>
 		</tr>
 	</tbody>
 </table>
